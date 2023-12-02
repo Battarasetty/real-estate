@@ -33,7 +33,7 @@ export const signin = async (req, res, next) => {
             .cookie('token', token, { httpOnly: true })
             .status(200)
             .json(rest);
-        console.log(token);
+        //  console.log(token);
     } catch (error) {
         next(error);
     }
