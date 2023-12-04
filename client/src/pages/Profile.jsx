@@ -4,9 +4,14 @@ import { useSelector } from 'react-redux'
 import { useRef } from 'react';
 
 import { useState } from 'react';
-
+import { useEffect } from 'react';
 
 const Profile = () => {
+
+  useEffect(() => {
+
+  }, [])
+  
 
   const fileRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
