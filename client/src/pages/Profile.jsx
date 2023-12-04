@@ -1,17 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-
 import { useRef } from 'react';
-
 import { useState } from 'react';
-//Harish
+import { useEffect } from 'react';
+
 
 const Profile = () => {
+  useEffect(() => {
 
-//Harish
-//Harish
-//Harish
-
+  }, [])
+  
   const fileRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
   const [file, setFile] = useState(null);
