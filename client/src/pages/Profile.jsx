@@ -7,11 +7,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 const Profile = () => {
+  const value = 'sai'
 
   useEffect(() => {
-
+    let value = "harish"
   }, [])
-  
+
 
   const fileRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
