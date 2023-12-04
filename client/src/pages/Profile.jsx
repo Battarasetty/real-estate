@@ -1,18 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-
 import { useRef } from 'react';
-
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const Profile = () => {
 
+const Profile = () => {
   useEffect(() => {
 
   }, [])
   
-
   const fileRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
   const [file, setFile] = useState(null);
