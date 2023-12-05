@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.listen('5555', () => {
-    console.log(`server is running at port 5555!!`);
+    console.log(`server is running at port 3000!!`);
 })
 
 app.use('/api/user', userRouter)
