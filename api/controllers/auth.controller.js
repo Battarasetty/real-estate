@@ -17,27 +17,33 @@ export const signup = async (req, res, next) => {
 }
 
 export const signin = async (req, res, next) => {
-    const { email, password } = req.body
+    const { email, password } = req.body;
     try {
-        const validUser = await User.findOne({ email });
+        const validUser = await User.findOne({ email }).maxTimeMS(10000); // Set the maximum time for the operation (10 seconds)
         if (!validUser) {
-            return next(errorHandler(404, 'user not found'))
+            return next(errorHandler(404, 'User not found'));
         }
-        const validPassword = bcryptjs.compareSync(password, validUser.password)
+
+        const validPassword = bcryptjs.compareSync(password, validUser.password);
         if (!validPassword) {
-            return next(errorHandler(401, 'Wrong Credentials!'))
+            return next(errorHandler(401, 'Wrong Credentials!'));
         }
-        const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET)
-        const { password: hashedPassword, ...rest } = validUser._doc
+
+        const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+        const { password: hashedPassword, ...rest } = validUser._doc;
         res
             .cookie('token', token, { httpOnly: true })
             .status(200)
             .json(rest);
-        //  console.log(token);
     } catch (error) {
+        // Check if the error is due to a timeout
+        if (error.message && error.message.includes('buffering timed out')) {
+            return next(errorHandler(503, 'Database operation timed out'));
+        }
         next(error);
     }
-}
+};
+
 
 export const google = async (req, res, next) => {
     try {
@@ -84,10 +90,10 @@ export const google = async (req, res, next) => {
 
 export const signOut = async (req, res, next) => {
     try {
-      res.clearCookie('token');
-      res.status(200).json('User has been logged out!');
+        res.clearCookie('token');
+        res.status(200).json('User has been logged out!');
     } catch (error) {
-      next(error);
+        next(error);
     }
-  };
+};
 

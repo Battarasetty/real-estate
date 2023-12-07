@@ -4,6 +4,6 @@ import { verifyToken } from '../utilis/verifyUser.js';
 
 const router = express.Router();
 
-router.post('/createListing', createListing);
+router.post('/create', verifyToken, createListing);
 
 export default router;
