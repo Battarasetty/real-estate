@@ -141,10 +141,26 @@ export default function Profile() {
         return;
       }
       setUserListings(data);
-      console.log(userListings);
+      // console.log(userListings);
     } catch (error) {
       // next(error)
       setShowListingsError(true)
+    }
+  }
+
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE'
+      })
+      const data = await res.json();
+      // console.log(data);
+      if (data.success === false) {
+        console.log(data.success);
+      }
+      setUserListings((prev) => prev.filter((listing) => listing._id !== listingId))
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
@@ -260,6 +276,7 @@ export default function Profile() {
 
               <div className='flex flex-col item-center'>
                 <button
+                  onClick={() => handleListingDelete(listing._id)}
                   className='text-red-700 uppercase'
                 >
                   Delete
