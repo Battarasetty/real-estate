@@ -20,6 +20,7 @@ const App = () => {
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/create-listing' element={<CreateListing />} />
+          {/* <Route path='/listing/:id' element={<Profile />} /> */}
         </Route>
         <Route path='/about' element={<About />} />
       </Routes>
