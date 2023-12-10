@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const Contact = ({ listing }) => {
-  console.log(listing);
+  // console.log(listing);
   const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState('');
-  console.log(landlord);
+  // console.log(landlord);
 
   useEffect(() => {
     const fetchLandlord = async (req, res) => {
@@ -14,7 +14,7 @@ const Contact = ({ listing }) => {
         const data = await res.json();
         setLandlord(data);
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
       }
     }
 
