@@ -55,6 +55,7 @@ export default function Search() {
             const res = await fetch(`/api/listing/get?${searchQuery}`);
             const data = await res.json();
             console.log(data);
+            console.log(data);
             if (data.length > 8) {
                 setShowMore(true);
             } else {
@@ -247,6 +248,9 @@ export default function Search() {
                         </p>
                     )}
 
+                    {!loading && Array.isArray(listings) && listings.map((listing) => (
+                        <ListingItem key={listing._id} listing={listing} />
+                    ))}
                     {!loading && Array.isArray(listings) && listings.map((listing) => (
                         <ListingItem key={listing._id} listing={listing} />
                     ))}
